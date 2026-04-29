@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vardophase Contractors PRO</title>
+
+<style>
+body {
+background: #0b0b0f;
+color: white;
+font-family: Arial;
+text-align: center;
+margin: 0;
+}
+
+.container {
+max-width: 900px;
+margin: auto;
+padding: 20px;
+}
+
+h1 {
+color: gold;
+}
+
+.kpi-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 15px;
+margin-top: 20px;
+}
+
+.kpi {
+padding: 15px;
+border-radius: 12px;
+background: #111;
+border: 1px solid #333;
+}
+
+.contract { color: gold; }
+.claimed { color: orange; }
+.paid { color: #00ffcc; }
+.outstanding { color: white; }
+.above { color: red; }
+
+button {
+margin: 10px;
+padding: 12px 15px;
+border-radius: 10px;
+border: none;
+background: gold;
+color: black;
+font-weight: bold;
+cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Contractors PRO</h1>
+
+<select id="contractorSelect"></select>
+
+<div class="kpi-grid">
+
+<div class="kpi contract">
+<span>Contract</span>
+<h2 id="contract">0</h2>
+</div>
+
+<div class="kpi claimed">
+<span>Claimed</span>
+<h2 id="claimed">0</h2>
+</div>
+
+<div class="kpi paid">
+<span>Paid</span>
+<h2 id="paid">0</h2>
+</div>
+
+<div class="kpi outstanding">
+<span>Outstanding</span>
+<h2 id="outstanding">0</h2>
+</div>
+
+<div class="kpi above">
+<span>Above Contract</span>
+<h2 id="above">0</h2>
+</div>
+
+</div>
+
+<div>
+<button onclick="addContract()">New Contract</button>
+<button onclick="addClaim()">Add Claim</button>
+<button onclick="addPayment()">Add Payment</button>
+</div>
+
+</div>
+
+<script>
+
+let data = JSON.parse(localStorage.getItem("contractors") || "{}");
+
+function save() {
+localStorage.setItem("contractors", JSON.stringify(data));
+}
+
+function addContract() {
+let name = prompt("Contractor name");
+let value = Number(prompt("Contract value"));
+
+if (!name || !value) return;
+
+data[name] = {
+contract: value,
+claimed: 0,
+paid: 0
+};
+
+save();
+render();
+}
+
+function addClaim() {
+let name = getSelected();
+if (!name) return;
+
+let amount = Number(prompt("Claim amount"));
+if (!amount) return;
+
+data[name].claimed += amount;
+
+save();
+render();
+}
+
+function addPayment() {
+let name = getSelected();
+if (!name) return;
+
+let max = data[name].claimed - data[name].paid;
+
+let amount = Number(prompt("Payment amount (max " + max + ")"));
+
+if (amount > max) {
+alert("Payment cannot exceed claimed!");
+return;
+}
+
+data[name].paid += amount;
+
+save();
+render();
+}
+
+function getSelected() {
+return document.getElementById("contractorSelect").value;
+}
+
+function render() {
+let select = document.getElementById("contractorSelect");
+
+select.innerHTML = "";
+
+Object.keys(data).forEach(name => {
+let opt = document.createElement("option");
+opt.value = name;
+opt.innerText = name;
+select.appendChild(opt);
+});
+
+if (!getSelected()) return;
+
+let c = data[getSelected()];
+
+document.getElementById("contract").innerText = c.contract;
+document.getElementById("claimed").innerText = c.claimed;
+document.getElementById("paid").innerText = c.paid;
+document.getElementById("outstanding").innerText = c.contract - c.paid;
+
+let above = c.claimed - c.contract;
+document.getElementById("above").innerText = above > 0 ? above : 0;
+}
+
+render();
+
+</script>
+
+</body>
+</html>
