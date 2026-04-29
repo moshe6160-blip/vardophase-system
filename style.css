@@ -1,0 +1,42 @@
+body {
+background: #0b0b0f;
+color: white;
+font-family: Arial;
+text-align: center;
+}
+
+.container {
+max-width: 900px;
+margin: auto;
+padding: 20px;
+}
+
+.kpi-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 15px;
+margin-top: 20px;
+}
+
+.kpi {
+padding: 15px;
+border-radius: 12px;
+background: #111;
+border: 1px solid #333;
+}
+
+.contract { color: gold; }
+.claimed { color: orange; }
+.paid { color: #00ffcc; }
+.outstanding { color: white; }
+.above { color: red; }
+
+button {
+margin: 10px;
+padding: 10px 15px;
+border-radius: 8px;
+border: none;
+background: gold;
+color: black;
+font-weight: bold;
+}
