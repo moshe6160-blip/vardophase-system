@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vardophase System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Vardophase Contractors PRO</h1>
+
+<select id="contractorSelect"></select>
+
+<div class="kpi-grid">
+
+<div class="kpi contract"><span>Contract</span><h2 id="contract">0</h2></div>
+<div class="kpi claimed"><span>Claimed</span><h2 id="claimed">0</h2></div>
+<div class="kpi paid"><span>Paid</span><h2 id="paid">0</h2></div>
+<div class="kpi outstanding"><span>Outstanding</span><h2 id="outstanding">0</h2></div>
+<div class="kpi above"><span>Above Contract</span><h2 id="above">0</h2></div>
+
+</div>
+
+<div class="actions">
+<button onclick="addContract()">New Contract</button>
+<button onclick="addClaim()">Add Claim</button>
+<button onclick="addPayment()">Add Payment</button>
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
