@@ -1,0 +1,48 @@
+body {
+  background:#0b0b0f;
+  color:#fff;
+  font-family:Arial;
+  padding:20px;
+}
+
+.kpi-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.kpi {
+  padding:12px;
+  border-radius:12px;
+  background:#111;
+}
+
+.kpi-contract { color:#e6c79c; }
+.kpi-paid { color:#4cd964; }
+.kpi-outstanding { color:#ffcc00; }
+.kpi-retention { color:#5ac8fa; }
+.kpi-over { color:#ff3b30; }
+
+.card {
+  margin-top:15px;
+  padding:15px;
+  background:#111;
+  border-radius:12px;
+}
+
+button {
+  padding:10px;
+  border:none;
+  background:#e6c79c;
+  border-radius:8px;
+  margin-top:5px;
+}
+
+select,input {
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+  background:#1a1a1f;
+  color:#fff;
+  border:none;
+}

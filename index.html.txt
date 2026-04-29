@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vardophase System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Contractors Dashboard</h1>
+
+<select id="contractorSelect" onchange="loadContractor(this.value)"></select>
+
+<div class="kpi-grid">
+  <div class="kpi kpi-contract">Contract: <span id="kpiContract">0</span></div>
+  <div class="kpi kpi-paid">Paid: <span id="kpiPaid">0</span></div>
+  <div class="kpi kpi-outstanding">Outstanding: <span id="kpiOutstanding">0</span></div>
+  <div class="kpi kpi-retention">Retention: <span id="kpiRetention">0</span></div>
+  <div class="kpi kpi-over">Over: <span id="kpiOver">0</span></div>
+</div>
+
+<div class="card">
+<h3>Contract</h3>
+<input id="contractInput" placeholder="Enter contract value">
+<button onclick="saveContract()">Save</button>
+</div>
+
+<div class="buttons">
+<button onclick="addAccount()">Add Account</button>
+<button onclick="releaseRetention()">Release Retention</button>
+</div>
+
+<div id="accounts"></div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
